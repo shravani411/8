@@ -1,0 +1,28 @@
+#include <stdio.h> 
+int n, target; 
+int a[100]; 
+int subset[100]; 
+void sumOfSubsets(int index, int currentSum, int subsetSize) 
+{
+if (currentSum == target)
+{
+printf("{ ");          
+for (int i = 0; i < subsetSize; i++)    
+printf("%d ", subset[i]);       
+printf("}\n");        
+return; } if (index == n || currentSum > target)   
+return; subset[subsetSize] = a[index];   
+sumOfSubsets(index + 1,currentSum+ a[index],subsetSize +1);
+sumOfSubsets(index + 1,currentSum,subsetSize); 
+}
+int main() { 
+printf("Enter number of elements: ");
+
+scanf("%d", &n);
+printf("Enter %d elements: ", n); 
+for (int i = 0; i < n; i++)         
+scanf("%d", &a[i]); 
+printf("Enter target sum: ");
+scanf("%d", &target);     
+printf("\nSubsets whose sum is %d:\n", target);    
+sumOfSubsets(0, 0, 0); return 0; } 
